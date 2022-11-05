@@ -10,15 +10,15 @@ class Country(models.Model):
 
 class Province(models.Model):
     name = models.CharField( max_length=50)
-    country_code = models.ForeignKey(Country, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'provinces'
 
 class City(models.Model):
     name = models.CharField( max_length=50)
-    country_id = models.ForeignKey(Country, on_delete=models.CASCADE)
-    province_id = models.ForeignKey(Province, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'cities'
