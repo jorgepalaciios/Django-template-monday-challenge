@@ -7106,7 +7106,7 @@
   },
   {
     "id": 1578,
-    "countryId": 207,
+    "country": 207,
     "name": "Willemstad"
   },
   {
@@ -7161,7 +7161,7 @@
   },
   {
     "id": 1589,
-    "countryId": 226,
+    "country": 226,
     "name": "Belgrade"
   },
   {
