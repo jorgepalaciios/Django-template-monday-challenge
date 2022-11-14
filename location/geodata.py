@@ -1,3 +1,4 @@
+from django.utils.translation import ugettext as _
 import json
 from location.models import Country, Province, City
 
