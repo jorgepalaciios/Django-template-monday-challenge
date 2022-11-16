@@ -1,18 +1,20 @@
-from django.urls import path
-
-
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 # others
-from .views import (
-    CountryCreation,
-    ProvinceCreation,
-    CityCreation
-)
+from . import views
 
 
 app_name = 'location'
 
+
+# Create a router and register our viewsets with it.
+router = DefaultRouter()
+router.register(r'countries', views.CountryViewSet, basename="countries")
+router.register(r'provinces', views.ProvinceViewSet, basename="provinces")
+router.register(r'cities', views.CityViewSet, basename="cities")
+
+
 urlpatterns = [
-    path('countries/creation/', CountryCreation.as_view(), name='countries_creation'),
-    path('provinces/creation/', ProvinceCreation.as_view(), name='provinces_creation'),
-    path('cities/creation/', CityCreation.as_view(), name='cities_creation'),
+    path('', include(router.urls)),
+    
 ]
