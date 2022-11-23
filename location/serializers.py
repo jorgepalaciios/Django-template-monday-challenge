@@ -5,6 +5,7 @@ from location.models import *
 
 
 class CountryModelSerializer(serializers.ModelSerializer):
+ 
     class Meta:
         model = Country
         fields = '__all__'
@@ -19,9 +20,12 @@ class CountryModelSerializer(serializers.ModelSerializer):
 
 
 class ProvinceModelSerializer(serializers.ModelSerializer):
+
+    country = CountryModelSerializer(read_only=True)
+
     class Meta:
         model = Province
-        fields = '__all__'
+        fields = ['id', 'name', 'country']
         extra_kwargs = {
             'name': {
                 'required': True,
@@ -31,11 +35,18 @@ class ProvinceModelSerializer(serializers.ModelSerializer):
             },
         }
 
+    def to_representation(self,instance):
+        data = super().to_representation(instance)
+        return data
+
 
 class CityModelSerializer(serializers.ModelSerializer):
+
+    province = ProvinceModelSerializer(read_only=True)
+
     class Meta:
         model = City
-        fields = '__all__'
+        fields = ['id','name', 'province']
         extra_kwargs = {
             'name': {
                 'required': True,
@@ -47,3 +58,7 @@ class CityModelSerializer(serializers.ModelSerializer):
                 'required': True,
             },
         }
+
+        def to_representation(self, instance):
+            data = super().to_representation(instance)
+            return data
