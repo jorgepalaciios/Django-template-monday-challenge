@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     # 'django_seed',
     # Feature apps
     'authentication',
+    'chats',
+    'chat_messages',
     'location',
 ]
 
